@@ -2,11 +2,16 @@ package com.mrbenino.weather
 
 import kotlinx.coroutines.*
 import android.annotation.SuppressLint
+import android.content.Intent
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationSettingsRequest
 import com.mrbenino.weather.network.APIService
 import kotlinx.android.synthetic.main.activity_main.*
 import retrofit2.Retrofit
@@ -29,10 +34,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
         getCurrentData()
-//        Glide.with(this)
-//            .load("https://openweathermap.org/img/wn/03d@4x.png")
-//            .into(findViewById<ImageView>(R.id.imageView2))
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -47,23 +50,17 @@ class MainActivity : AppCompatActivity() {
             textView2.text = (temp - 273.15).toInt().toString()
             textView3.text = responese.weather.getOrNull(0)?.main.toString()
             val icon = responese.weather.getOrNull(0)?.icon.toString()
-//            imageView.setImageDrawable(getDrawable(R.drawable.a1))
-//            imageView.elevation = 0f
-
-//            Picasso.get().load("http://openweathermap.org/img/wn/04d@4x.png").into(imageView2)
             Log.d(TAG,icon)
-//            val pach =
-//            Log.d(TAG,pach)
-//            Picasso.get()
-//                .load(pach)
-//                .error(R.drawable.a2)
-//                .into(imageView2)
-
 
             Glide.with(this@MainActivity)
-                .load("http://openweathermap.org/img/wn/03d@4x.png")
+                .load("http://openweathermap.org/img/wn/$icon@4x.png")
                 .into(imageView2)
         }
-
     }
+
+    fun onBroadleWeather(view: View){
+        val BroadleWeatherActivity = Intent(this,BroadlyActivity::class.java)
+        startActivity(BroadleWeatherActivity)
+    }
+
 }
