@@ -16,16 +16,14 @@ class MyAdapter(private val Dataset: BroadlyWeather) :
     }
 
 
-    override fun onCreateViewHolder(parent: ViewGroup,
-                                    viewType: Int): MyAdapter.MyViewHolder {
-        val textView = LayoutInflater.from(parent.context)
-            .inflate(R.layout.broadly_iteam, parent, false) as TextView
-        return MyViewHolder(textView)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
+        val view = LayoutInflater.from(parent.context)
+            .inflate(R.layout.broadly_iteam, parent, false)
+        return MyViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.temperature.text = Dataset.list[position].main.temp.toString()
-        //holder.textView.text = Dataset.list[position].main.temp.toString()
     }
 
     override fun getItemCount() = Dataset.list.size

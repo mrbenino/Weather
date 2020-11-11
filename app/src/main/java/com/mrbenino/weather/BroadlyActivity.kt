@@ -34,29 +34,22 @@ class BroadlyActivity : AppCompatActivity() {
         setContentView(R.layout.fragment_weather)
 
         getCurrentData()
-
-        viewManager = LinearLayoutManager(this)
-
-
-        recyclerView = findViewById<RecyclerView>(R.id.my_recycler_view).apply {
-            setHasFixedSize(true)
-
-            layoutManager = viewManager
-
-            adapter = viewAdapter
-
-        }
     }
 
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private fun getCurrentData(){
-
+    private fun getCurrentData() {
         scope.launch {
             val call = api.broadlyWeather()
             val responese: BroadlyWeather = call.await()
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 viewAdapter = MyAdapter(responese)
+                viewManager = LinearLayoutManager(applicationContext)
+                recyclerView = findViewById<RecyclerView>(R.id.my_recycler_view).apply {
+                    setHasFixedSize(true)
+                    layoutManager = viewManager
+                    adapter = viewAdapter
+                }
             }
             Log.d(TAG2, responese.toString())
         }
