@@ -1,6 +1,6 @@
 package com.mrbenino.weather.model
 
 data class Wind(
-    val speed:Int,
+    val speed:Float,
     val deg:Int
 )

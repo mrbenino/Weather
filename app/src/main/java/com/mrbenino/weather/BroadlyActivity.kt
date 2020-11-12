@@ -32,10 +32,8 @@ class BroadlyActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_weather)
-
         getCurrentData()
     }
-
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun getCurrentData() {
@@ -54,5 +52,4 @@ class BroadlyActivity : AppCompatActivity() {
             Log.d(TAG2, responese.toString())
         }
     }
-
 }

@@ -15,7 +15,6 @@ class MyAdapter(private val Dataset: BroadlyWeather) :
         var temperature:TextView = view.findViewById(R.id.tv_iteam)
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.broadly_iteam, parent, false)
